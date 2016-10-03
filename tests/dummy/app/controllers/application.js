@@ -33,5 +33,11 @@ export default Ember.Controller.extend({
     set(object, propertyName, value);
   },
 
-  user: blankUser()
+  user: blankUser(),
+
+  actions: {
+    save() {
+      console.log("saved");
+    }
+  }
 });

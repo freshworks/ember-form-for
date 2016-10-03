@@ -1,0 +1,66 @@
+// Radio inputs
+
+input[type='radio'] {
+  position: absolute;
+  opacity: 0;
+
+  & + label {
+    user-select: none;
+    cursor: pointer;
+    padding-left: 30px;
+
+    &:before, &:after {
+      position: absolute;
+      left: 3px;
+      bottom: 3px;
+      display: block;
+      content: "";
+      border: $radio-border-width solid $radio-color;
+      height: 16px;
+      width: 16px;
+      border-radius: 50%;
+      background: $input-bg;
+      transition: all 0.3s ease;
+      background-clip:padding-box;
+    }
+
+    &:after {
+      background: $radio-checked-color;
+      border: $radio-border-width solid $input-bg;
+      transform: scale(0);
+      transition: all 0.3s ease;
+    }
+  }
+
+  &:focus + label {
+    &:before {
+      // box-shadow: 0 0 5px $radio-checked-color;
+    }
+  }
+
+  &:checked + label {
+    &:before {
+      border-color: $radio-checked-color;
+    }
+
+    &:after {
+      transform: scale(0.75, 0.75);
+    }
+  }
+
+  &[disabled] {
+    & + label {
+      color: $disabled-color;
+
+      &:before {
+        border-color: $disabled-color;
+      }
+    }
+
+    &:checked + label {
+      &:before, &:after {
+        background: $disabled-color;
+      }
+    }
+  }
+}

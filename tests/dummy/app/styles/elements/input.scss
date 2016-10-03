@@ -1,0 +1,114 @@
+// Text inputs
+
+label {
+  color: $label-color;
+  font-family: $label-font;
+  font-weight: 400;
+  cursor: text;
+  transform: translate(0, 0);
+  -webkit-font-smoothing: antialiased;
+}
+
+.info{
+  font-family: $label-font;
+  font-size: 75%;
+  margin-top: 3px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.hint {
+  color: $help-color;
+}
+
+.error{
+  color: $error-color;
+}
+
+&.has-content{
+    input[type='text'],
+    input[type='email'],
+    input[type='number'],
+    input[type='password'],
+    input[type='date'],
+    textarea {
+      & + label {
+        transform: translate(-12.5%, -1.5em) scale(0.75, 0.75) !important;
+      }
+    }
+}
+
+input[type='text'],
+input[type='email'],
+input[type='number'],
+input[type='password'],
+input[type='date'],
+textarea {
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid $input-border;
+  margin: 1.25em 0 0 0;
+  border-radius: 0;
+  padding: 0;
+  font-family: $input-font;
+  resize: none;
+  color: $input-color;
+
+  &:focus {
+    outline:none;
+    box-shadow: 0 1px 0 $input-focus-color;
+    border-color: $input-focus-color;
+    background: $input-bg;
+  }
+
+  &:focus{
+    & + label {
+      transform: translate(-12.5%, -1.5em) scale(0.75, 0.75) !important;
+    }
+  }
+
+  &[disabled] {
+    color: $disabled-color;
+    background-color: $input-bg;
+    border-style: dashed;
+
+    & + label {
+      color: $disabled-color;
+    }
+  }
+
+  & + label {
+    width: 100%;
+    position:absolute;
+    left:0;
+    top: 1.25em;
+    margin-bottom: 2px;
+    transition: all 0.3s ease;
+  }
+}
+
+&.error {
+  input[type='text'],
+  input[type='email'],
+  input[type='number'],
+  input[type='password'],
+  input[type='date'],
+  textarea {
+    border-color: $error-color;
+    box-shadow: 0 1px 0 $error-color;
+  }
+}
+
+textarea {
+  &:focus + label, &[value] + label {
+    top: 1.25em;
+  }
+
+  & + label {
+    margin-bottom: 5px;
+    transform: translate(-12.5%, -1.5em) scale(0.75, 0.75);
+  }
+
+  &:empty + label {
+    transform: translate(0, 0) scale(1, 1);
+  }
+}

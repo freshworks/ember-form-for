@@ -1,1 +1,40 @@
 @import 'gh-fork-ribbon';
+
+.form-wrapper{
+  width: 300px;
+}
+
+
+$label-color: #555;
+$label-font: 'Helvetica Neue';
+$input-font: 'Helvetica Neue';
+$placeholder-font: normal 300 100% 'Helvetica Neue';
+$placeholder-color: #999;
+$help-color: #999;
+$error-color: #a94442;
+$input-border: #ccc;
+$input-bg: #fff;
+$input-color: #555;
+$input-focus-color: #4aa8a4;
+$checkbox-color: #666;
+$checkbox-checked-color: #4aa8a4;
+$checkbox-border-width: 2px;
+$checkbox-mark-width: 2px;
+$radio-color: #666;
+$radio-border-width: 2px;
+$radio-checked-color: #4aa8a4;
+$disabled-color: $input-border;
+
+.input {
+  position:relative;
+  margin-bottom: 15px;
+
+  @import "elements/input";
+  @import "elements/checkbox";
+  @import "elements/radio";
+  // @import "elements/select";
+}
+
+
+// Importing custom fields styles
+// @import "customfields/checkbox";
