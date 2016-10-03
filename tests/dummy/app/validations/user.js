@@ -25,5 +25,11 @@ export default buildValidations({
     validators: [
       validator('presence', true)
     ]
+  },
+  address: {
+    description: 'Address',
+    validators: [
+      validator('presence', true)
+    ]
   }
 });

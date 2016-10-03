@@ -5,13 +5,14 @@
     hintClasses=hintClasses
     inputClasses=inputClasses
     labelClasses=labelClasses
+    startValidate=startValidate
     object=object
     hint=hint
     form=form
     label=label
     control=control
     update=(action update) as |f|}}
-  {{f.label required=required}}
+
   {{f.control
       accesskey=accesskey
       autocomplete=autocomplete
@@ -34,6 +35,7 @@
       title=title
       wrap=wrap
   }}
+  {{f.label required=required}}
   {{f.errors}}
   {{f.hint}}
 {{/form-field}}
