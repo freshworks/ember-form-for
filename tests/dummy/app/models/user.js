@@ -5,5 +5,6 @@ export default Model.extend({
   firstName: attr('string'),
   email: attr('string'),
   location: attr('string'),
-  address: attr('string')
+  address: attr('string'),
+  terms: attr('boolean')
 });

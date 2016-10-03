@@ -31,5 +31,11 @@ export default buildValidations({
     validators: [
       validator('presence', true)
     ]
+  },
+  terms: {
+    description: 'Terms',
+    validators: [
+      validator('presence', true)
+    ]
   }
 });
