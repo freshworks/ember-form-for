@@ -1,34 +1,3 @@
-<div class="container">
-<h2 id="title">Register a new user</h2>
-
-
-<div class="form-wrapper">
-{{#form-for user update=(action update) reset=(action reset) submit=(action 'save') as |f|}}
-  {{f.text-field "firstName" required=true}}
-  {{f.text-field "lastName" required=true}}
-
-  <!-- {{#fields-for user.address update=(action update) as |fa|}}
-    {{fa.text-field "address" required=true}}
-    {{fa.text-field "city" required=true}}
-    {{fa.text-field "state" required=true}}
-    {{fa.text-field "zipCode" required=true}}
-  {{/fields-for}}
-
-  {{f.select-field "gender" "unknown male female"}}
-
-  {{f.date-field "birthDate"}}
-
-  {{f.email-field "emailAddress" required=true}}
-  {{f.text-field "userName" required=true}}
-  {{f.password-field "password" hint="Must be at least 6 characters long" required=true}}
-
-  {{f.checkbox-field "terms" label="I agree to the Terms of Service" required=true}} -->
-
-  {{f.reset  "Clear form"}}
-  {{f.submit "Create account"}}
-{{/form-for}}
-</div>
-</div>
 {{outlet}}
 
 <!-- <a class="github-fork-ribbon" href="https://github.com/martndemus/ember-form-for" title="GitHub Repo">GitHub Repo</a> -->

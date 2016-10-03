@@ -1,12 +1,14 @@
 import Ember from 'ember';
 import layout from '../templates/components/form-field';
 
+import validation from '../mixins/validations';
+
 import { humanize } from '../utils/strings';
 
 const {
   assert,
   computed,
-  computed: { notEmpty, or, reads },
+  computed: { notEmpty, or, reads, readOnly, and, not },
   get,
   getWithDefault,
   guidFor,
@@ -16,7 +18,8 @@ const {
   observer,
   set,
   Component,
-  String: { dasherize }
+  String: { dasherize },
+  defineProperty
 } = Ember;
 
 const FormFieldComponent = Component.extend({
@@ -28,7 +31,11 @@ const FormFieldComponent = Component.extend({
   _defaultErrorsProperty: 'errors',
   errorsProperty: or('config.errorsProperty', '_defaultErrorsProperty'),
 
-  classNameBindings: [],
+  classNameBindings: [
+    'hasContent:has-content',
+    'isValid:valid',
+    'showError:error'
+  ],
 
   concatenatedProperties: [
     'inputClasses',
@@ -41,6 +48,10 @@ const FormFieldComponent = Component.extend({
 
   init() {
     this._super(...arguments);
+
+    let propertyName = this.get('propertyName');
+    defineProperty(this, 'validation', computed.oneWay(`object.validations.attrs.${propertyName}`));
+
 
     let fieldClasses = get(this, 'config.fieldClasses');
     let classNames = get(this, 'classNames');
@@ -78,7 +89,7 @@ const FormFieldComponent = Component.extend({
 
     mixin(this, {
       rawValue: reads(`object.${propertyName}`),
-      errors: reads(`object.${errorsProperty}.${propertyName}`),
+      errors: reads('validation.messages'),
       hasErrors: notEmpty(`object.${errorsProperty}.${propertyName}`)
     });
   }),
@@ -146,6 +157,16 @@ const FormFieldComponent = Component.extend({
     let serializeValue = getWithDefault(this, 'serializeValue', (value) => value);
     return serializeValue(get(this, 'rawValue'));
   }),
+
+  hasContent: notEmpty('value').readOnly(),
+  isInvalid: readOnly('validation.isInvalid'),
+  notValidating: not('validation.isValidating').readOnly(),
+  isValid: and('hasContent', 'validation.isValid', 'notValidating').readOnly(),
+  showError: and('startValidate', 'isInvalid').readOnly(),
+  showHint: not('showError').readOnly(),
+
+  error: reads('validation.messages.firstObject'),
+  errors: reads('validation.messages'),
 
   actions: {
     processUpdate(object, propertyName, value) {

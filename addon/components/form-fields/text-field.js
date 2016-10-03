@@ -9,7 +9,13 @@ const TextFieldComponent = Ember.Component.extend({
 
   control: 'one-way-text',
 
+  didReceiveAttrs() {
+    this._super(...arguments)
+    var startValidate = this.get('startValidate');
+    // console.log("startValidate", startValidate);
+  },
   update(object, propertyName, value) {
+    console.log("sasa", value);
     set(object, propertyName, value);
   }
 });

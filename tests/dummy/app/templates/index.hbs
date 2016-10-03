@@ -1,0 +1,31 @@
+<div class="container">
+<h2 id="title">Register a new user</h2>
+
+<div class="form-wrapper">
+{{#form-for model validations update=(action update) reset=(action reset) submit=(action 'save') as |f|}}
+  {{f.text-field "firstName" required=true hint="Firstname here"}}
+  {{f.text-field "email" required=true hint="Email here"}}
+  {{f.text-field "location" required=true hint="Location here"}}
+
+  <!-- {{#fields-for user.address update=(action update) as |fa|}}
+    {{fa.text-field "address" required=true}}
+    {{fa.text-field "city" required=true}}
+    {{fa.text-field "state" required=true}}
+    {{fa.text-field "zipCode" required=true}}
+  {{/fields-for}}
+
+  {{f.select-field "gender" "unknown male female"}}
+
+  {{f.date-field "birthDate"}}
+
+  {{f.email-field "emailAddress" required=true}}
+  {{f.text-field "userName" required=true}}
+  {{f.password-field "password" hint="Must be at least 6 characters long" required=true}}
+
+  {{f.checkbox-field "terms" label="I agree to the Terms of Service" required=true}} -->
+
+  {{f.reset  "Clear form"}}
+  {{f.submit "Create account"}}
+{{/form-for}}
+</div>
+</div>
